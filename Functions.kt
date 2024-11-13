@@ -5,6 +5,17 @@ fun main () {
     println(calculatePriceDouble(100.0, 0.2))
 
     println("Higher than threshold? ${checkThreshold(50.0, 20.0)}")
+
+    println(concatString("John", "Lam"))
+
+    println("Area of Circle with radius 2 is ${calculateCircleArea(2.0)}")
+
+    printCircleArea(2.0)
+
+    trailingFun("Good Morning, ") {
+        print(it)
+        calculatePriceDouble(20.0, 0.3)
+    }
 }
 
 /* Create a function with float parameter
@@ -25,4 +36,31 @@ fun calculatePriceDouble(price: Double, discount: Double): Float {
 /* Create a function returning Boolean */
 fun checkThreshold(price: Double, threshold: Double): Boolean {
     return price > threshold
+}
+
+/* Create a Lambda 
+format: val variable/lambda name: (input types) -> output types = {input parameters -> codes}
+*/
+val concatString: (String, String) -> String = {
+    a, b -> a + " " + b
+}
+
+/*
+Create a lambda
+for single input, can use the keyword "it" to represent input
+*/
+val calculateCircleArea: (Double) -> Double = {
+    it -> 3.1415926 * it * it
+}
+
+/* Create a lambda without return, i.e. Unit/ Void */
+val printCircleArea: (Double) -> Unit = {
+    println(3.1415926 * it * it)
+}
+
+/* Create a trailing lambda, i.e. last parameter of a function is a function parameter
+this function parameter can be written outside the (), i.e. inside {}
+*/
+fun trailingFun(message: String, funAsParameter: (String) -> Float) {
+    println("$message ${funAsParameter(message)}")
 }
